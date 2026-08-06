@@ -1,0 +1,44 @@
+Commands to show in the interview
+
+Open another terminal:
+
+cd ~/tiny_slam_ros2_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+Show the node:
+
+ros2 node list
+
+Show the topics:
+
+ros2 topic list
+
+Show everything connected to the node:
+
+ros2 node info /tiny_slam_node
+
+Show the live SLAM status:
+
+ros2 topic echo /tiny_slam/status
+
+It should display changing values such as:
+
+data: 'step=75/216 odom_rmse=0.182m slam_rmse=0.164m'
+
+Show the LiDAR publication frequency:
+
+ros2 topic hz /scan
+
+Inspect one odometry message:
+
+ros2 topic echo /odom --once
+
+Inspect the map metadata:
+
+ros2 topic echo /map --once
+
+Reset the simulation through a ROS service:
+
+ros2 service call /tiny_slam/reset \
+std_srvs/srv/Trigger "{}"
